@@ -110,17 +110,7 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                                 aux2.Prox = aux.Prox;
                             }
                         }
-                        //if (nome == aux.Prox.Nome && aux.Prox.Prox == null)
-                        //{
-                        //    Fim = aux;
-                        //    aux.Prox = null;
-                        //}
-                        //else if (nome == aux.Ant.Prox.Nome)
-                        //{
-                        //    aux = aux.Prox;
-                        //    aux.Prox = aux.Prox.Prox;
-                        //    break;
-                        //}
+                        
                         if(aux == aux2)
                         { 
                             aux = aux.Prox;
