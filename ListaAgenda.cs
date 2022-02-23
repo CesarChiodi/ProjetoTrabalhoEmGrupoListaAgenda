@@ -32,7 +32,6 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                     Console.WriteLine(aux.GetPhone());
                     aux = aux.Prox;
                     Console.ReadKey();
-
                 } while (aux != null);
             }
         }
@@ -70,67 +69,72 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
             }
             return aux;
         }
-        //public void Push(Contato novoContato)
-        //{
-        //    if(Vazia())
-        //    {
-        //        Fim = novoContato;
-        //        Inicio = novoContato;
-        //    }
-        //    else
-        //    {
-        //        Fim.Prox = novoContato;
-        //        Fim = novoContato;
-        //    }
-        //}
-        //public void Ordem()
-        //{
-        //    Contato referencia;
-        //    for (referencia = Inicio; referencia != null; referencia = referencia.Prox)
-        //    {
-        //        Contato comparacao;
-        //        for(comparacao = referencia.Prox; comparacao != null; comparacao = comparacao.Prox)
-        //        {
-        //            Contato aux;
-        //            if(referencia.Nome.CompareTo(comparacao.Nome) > 0)
-        //            {
-        //                aux = referencia;
-        //                referencia = comparacao;
-        //                referencia.Prox = aux;
-        //            }
-        //        }
-        //    }
-        //}
+        
+
         public void Pop()
         {
-            string nome = Buscar();
-            Contato aux = Inicio;
-
-            if (aux.Nome == nome)
-            {
-                Inicio = aux.Prox;
-            }
+            //confirmar se agenda e fazia, evitando o programa quebrar.
+            if (Vazia())
+                Console.WriteLine("AGENDA VAZIA");
             else
             {
-                do
+                string nome = Buscar();
+                Contato aux = Inicio, aux2 = Inicio;
+
+                if (aux.Nome == nome)
                 {
-                    if (nome == aux.Prox.Nome && aux.Prox.Prox == null)
+                    Inicio = aux.Prox;
+                }
+                else
+                {
+                    do
                     {
-                        Fim = aux;
-                        aux.Prox = null;
+                        if (string.Compare(aux.Nome.ToUpper(), nome.ToUpper()) == 0)
+                        {
+                            if(Inicio == Fim) 
+                            {
+                                Inicio = null;
+                                Fim = null;
+                            }
+                            else if(aux == Fim)
+                            {
+                                aux2.Prox = aux.Prox;
+                                Fim = aux2;
+                            }
+                            else if(aux == Inicio)
+                            {
+                                Inicio = Inicio.Prox;
+                            }
+                            else
+                            {
+                                aux2.Prox = aux.Prox;
+                            }
+                        }
+                        //if (nome == aux.Prox.Nome && aux.Prox.Prox == null)
+                        //{
+                        //    Fim = aux;
+                        //    aux.Prox = null;
+                        //}
+                        //else if (nome == aux.Ant.Prox.Nome)
+                        //{
+                        //    aux = aux.Prox;
+                        //    aux.Prox = aux.Prox.Prox;
+                        //    break;
+                        //}
+                        if(aux == aux2)
+                        { 
+                            aux = aux.Prox;
+                        }
+                        else
+                        {
+                            aux = aux.Prox;
+                            aux2 = aux2.Prox;
+                        }
 
-                    }
-                    else if (nome == aux.Ant.Prox.Nome)
-                    {
-                        aux = aux.Prox;
-                        aux.Prox = aux.Prox.Prox;
-                        break;
-                    }
-                    aux = aux.Prox;
+                    } while (aux != null);
 
-                } while (aux != null);
-
-                Console.WriteLine("\nCONTATO REMOVIDO");
+                    Console.WriteLine("\nCONTATO REMOVIDO");
+                }
             }
         }
         public string Buscar()
@@ -143,7 +147,7 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
             else
             {
                 Console.WriteLine("INFORME O NOME PARA BUSCA");
-                nome1 = Console.ReadLine();
+                nome1 = Console.ReadLine().Trim();
                 Contato aux = Inicio;
                 if (nome1.ToLower() == null)
                 {
@@ -152,10 +156,11 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                 else
                 {
                     do
-                    {
-                        if (nome1.ToLower() == aux.Nome)
+                    { 
+                        //Utilizado = if (nome1.ToLower() == aux.Nome) ---> Estava faltando transformar o aux.Nome em caixa Baixa (ToLower)
+                        if (nome1.ToLower() == aux.Nome.ToLower())
                         {
-                            Console.WriteLine(aux.GetPhone());
+                            Console.WriteLine("\n" + aux.GetPhone());
                         }
                         aux = aux.Prox;
                     } while (aux != null);

@@ -2,7 +2,7 @@
 
 namespace ReexecuçaoTrablalhoEmGrupoLista
 {
-    internal class Program
+    internal class Program 
     {
         static ListaAgenda minhalista = new ListaAgenda();
         static void Main(string[] args)
@@ -12,59 +12,68 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
             Menu();
 
         }
-        public static int Menu()
+        public static void Menu()
         {
 
-
-            int opc;
-            Console.WriteLine("++++++++menu++++++++");
-            Console.WriteLine("0 - sair");
-            Console.WriteLine("1 - cadastrar um novo contato");
-            Console.WriteLine("2 - localizar um contato na agenda");
-            Console.WriteLine("3 - remover um contato da agenda");
-            Console.WriteLine("4 - editar um contato da agenda");
-            Console.WriteLine("5 - imprimir contatos da agenda");
-            opc = int.Parse(Console.ReadLine());
-
-            switch (opc)
+            int opc = -1;
+            while (opc != 0)
             {
+                Console.WriteLine("++++++++menu++++++++");
+                Console.WriteLine("0 - sair");
+                Console.WriteLine("1 - cadastrar um novo contato");
+                Console.WriteLine("2 - localizar um contato na agenda");
+                Console.WriteLine("3 - remover um contato da agenda");
+                Console.WriteLine("4 - editar um contato da agenda");
+                Console.WriteLine("5 - imprimir contatos da agenda");
+                string value = Console.ReadLine();
+                bool flag = int.TryParse(value, out opc);
 
-                case 0:
-                    Console.WriteLine("PROGRAMA ENCERRADO");
-                    break;
-                case 1:
+                if (!flag)
+                {
                     Console.Clear();
-                    minhalista.Push(LerContato());
-                    //minhalista.Ordem();
-                    Console.WriteLine("\nCONTATO ADICIONADO");
-                    VoltaMenu();
-                    break;
-                case 2:
-                    Console.Clear();
-                    minhalista.Buscar();
-                    VoltaMenu();
-                    break;
-                case 3:
-                    Console.Clear();
-                    minhalista.Pop();
-                    //minhalista.Ordem();
-                    VoltaMenu();
-                    break;
-                case 4:
-                    Console.Clear();
-                    minhalista.Editar();
-                    //minhalista.Ordem();
-                    VoltaMenu();
-                    break;
-                case 5:
-                    Console.Clear();
-                    minhalista.Print();
-                    Console.WriteLine("\nIMPRESSAO CONCLUIDA");
-                    VoltaMenu();
-                    break;
+                    Console.WriteLine("Insira uma opcao valida");
+                }
+                else
+                {
+                    switch (opc)
+                    {
+
+                        case 0:
+                            Console.WriteLine("PROGRAMA ENCERRADO");
+                            break;
+                        case 1:
+                            Console.Clear();
+                            minhalista.Push(LerContato());
+                            //minhalista.Ordem();
+                            Console.WriteLine("\nCONTATO ADICIONADO");
+                            VoltaMenu();
+                            break;
+                        case 2:
+                            Console.Clear();
+                            minhalista.Buscar();
+                            VoltaMenu();
+                            break;
+                        case 3:
+                            Console.Clear();
+                            minhalista.Pop();
+                            //minhalista.Ordem();
+                            VoltaMenu();
+                            break;
+                        case 4:
+                            Console.Clear();
+                            minhalista.Editar();
+                            //minhalista.Ordem();
+                            VoltaMenu();
+                            break;
+                        case 5:
+                            Console.Clear();
+                            minhalista.Print();
+                            Console.WriteLine("\nIMPRESSAO CONCLUIDA");
+                            VoltaMenu();
+                            break;
+                    }
+                }
             }
-
-            return opc;
         }
         public static Contato LerContato()
         {
