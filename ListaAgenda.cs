@@ -69,7 +69,7 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
             }
             return aux;
         }
-        
+
 
         public void Pop()
         {
@@ -80,28 +80,23 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
             {
                 string nome = Buscar();
                 Contato aux = Inicio, aux2 = Inicio;
-
-                if (aux.Nome == nome)
+                do
                 {
-                    Inicio = aux.Prox;
-                }
-                else
-                {
-                    do
+                    if (string.Compare(nome.ToUpper(), aux.Nome.ToUpper()) == 0)
                     {
-                        if (string.Compare(aux.Nome.ToUpper(), nome.ToUpper()) == 0)
+                        if (Inicio == Fim)
                         {
-                            if(Inicio == Fim) 
+                            Inicio = null;
+                            Fim = null;
+                        }
+                        else
+                        {
+                            if (aux == Fim)
                             {
-                                Inicio = null;
-                                Fim = null;
-                            }
-                            else if(aux == Fim)
-                            {
-                                aux2.Prox = aux.Prox;
                                 Fim = aux2;
+                                aux2.Prox = null;
                             }
-                            else if(aux == Inicio)
+                            else if (aux == Inicio)
                             {
                                 Inicio = Inicio.Prox;
                             }
@@ -110,21 +105,41 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                                 aux2.Prox = aux.Prox;
                             }
                         }
-                        
-                        if(aux == aux2)
-                        { 
-                            aux = aux.Prox;
-                        }
-                        else
-                        {
-                            aux = aux.Prox;
-                            aux2 = aux2.Prox;
-                        }
 
-                    } while (aux != null);
+                        //if(Inicio == Fim) 
+                        //{
+                        //    Inicio = null;
+                        //    Fim = null;
+                        //}
+                        //else if(aux == Fim)
+                        //{
+                        //    aux2.Prox = aux.Prox;
+                        //    Fim = aux2;
+                        //}
+                        //else if(aux == Inicio)
+                        //{
+                        //    Inicio = Inicio.Prox;
+                        //}
+                        //else
+                        //{
+                        //    aux2.Prox = aux.Prox;
+                        //}
+                    }
 
-                    Console.WriteLine("\nCONTATO REMOVIDO");
-                }
+                    if (aux == aux2)
+                    {
+                        aux = aux.Prox;
+                    }
+                    else
+                    {
+                        aux = aux.Prox;
+                        aux2 = aux2.Prox;
+                    }
+
+                } while (aux != null);
+
+                Console.WriteLine("\nCONTATO REMOVIDO");
+
             }
         }
         public string Buscar()
@@ -146,9 +161,9 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                 else
                 {
                     do
-                    { 
+                    {
                         //Utilizado = if (nome1.ToLower() == aux.Nome) ---> Estava faltando transformar o aux.Nome em caixa Baixa (ToLower)
-                        if (nome1.ToLower() == aux.Nome.ToLower())
+                        if (nome1.ToLower() == aux.Nome.ToLower().Trim())
                         {
                             Console.WriteLine("\n" + aux.GetPhone());
                         }

@@ -82,9 +82,9 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
 
 
             Console.WriteLine("INFORME O NOME DO CONTATO");
-            nome = Console.ReadLine();
+            nome = Console.ReadLine().Trim();
             Console.WriteLine("INFORME O E-MAIL DO CONTATO");
-            email = Console.ReadLine();
+            email = Console.ReadLine().Trim();
             do
             {
 
@@ -111,7 +111,6 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                 tipo = Console.ReadLine();
                 listaContatoTelefone[i] = new ContatoTelefone(ddd, telefone, tipo);
             }
-
             return new Contato(nome, email, listaContatoTelefone);
         }
 
