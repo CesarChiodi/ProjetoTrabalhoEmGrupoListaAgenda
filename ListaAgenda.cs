@@ -145,9 +145,9 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                 Console.WriteLine("INFORME O NOME PARA BUSCA");
                 nome1 = Console.ReadLine();
                 Contato aux = Inicio;
-                if (nome1.ToLower() == null)
+                if (nome1 == null)
                 {
-                    Console.WriteLine("O CONTATO NAO FOI ENCONTRADO");
+                    Console.WriteLine("NOME DIGITADO NÃO DEVE SER VAZIO");
                 }
                 else
                 {

@@ -62,6 +62,11 @@ namespace ReexecuçaoTrablalhoEmGrupoLista
                     Console.WriteLine("\nIMPRESSAO CONCLUIDA");
                     VoltaMenu();
                     break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("OPÇÃO NÃO ENCONTRADA!");
+                    VoltaMenu();
+                    break;
             }
 
             return opc;
